@@ -86,10 +86,14 @@ EmployeeSchema.methods.getFullName = function(){
   return `${this.firstname} ${this.lastname}`
 }
 
-//2. Static method declararion
-EmployeeSchema.statics.getEmployeeByFirstName = function(value){
-  return this.find({firstname : value})
+EmployeeSchema.methods.getFormatedSalary = function(){
+  return `$${this.salary}`
 }
+
+//2. Static method declararion
+EmployeeSchema.static("getEmployeeByFirstName", function(value) {
+  return this.find({firstname: value})
+});
 
 //Writing Query Helpers
 EmployeeSchema.query.byFirstName = function(name) {
