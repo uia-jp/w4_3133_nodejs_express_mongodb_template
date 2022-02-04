@@ -92,8 +92,13 @@ EmployeeSchema.static("getEmployeeByFirstName", function(value) {
 
 
 //Writing Query Helpers
-EmployeeSchema.query.byFirstName = function(fnm){
-  return this.where({firstname: fnm})
+EmployeeSchema.query.byLastName = function(value){
+  return this.where({lastname: value})
+}
+
+EmployeeSchema.query.byFirstName = function(value, salary){
+  return this.where({firstname: value})
+             .where('salary').gte(salary)
 }
 
 
