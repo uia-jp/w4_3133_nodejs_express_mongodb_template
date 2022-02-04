@@ -39,23 +39,25 @@ app.get('/employee', async (req, res) => {
 //http://localhost:8081/employees/firstname/pritesh
 app.get('/employees/firstname/:name', async (req, res) => {
   const name = req.params.name
-  //const employees = await employeeModel.find({firstname : name});
+  //const employees = await employeeModel.findOne({firstname : name});
+  // const employees = await employeeModel.find({firstname : name});
+  // console.log(employees)
   
-  //Using Virtual Field Name
-  //console.log(employees[0].fullname)
+  // //Using Virtual Field Name
+  // console.log(`Full Name ${employees[0].fullname}`)
+  // //Alias column name
+  // console.log(`Surname ${employees[0].surname}`)
 
-  //Using Instance method
-  //console.log(employees[0].getFullName())
-
-  //Using Instance method
-  //console.log(employees[0].getFormatedSalary())
-  
+  // //Using Instance method
+  // console.log(employees[0].getFullName())
+  // console.log(employees[0].getFormattedSalary())
 
   //Using Static method
-  const employees = await employeeModel.getEmployeeByFirstName(name)
+  //const employees = await employeeModel.getEmployeeByFirstName(name)
   
   //Using Query Helper
-  //const employees = await employeeModel.findOne().byFirstName(name)
+  const employees = await employeeModel.findOne().byFirstName(name, 100).sort('-salary')
+  
   
   try {
     if(employees.length != 0){
