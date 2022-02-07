@@ -1,24 +1,15 @@
 const mongoose = require('mongoose');
 
-//Create Schema
 const EmployeeSchema = new mongoose.Schema({
   firstname: {
     type: String,
-<<<<<<< HEAD
     required: [true, 'Please enter first name'],
-=======
-    required: [true, "Please Enter First Name"],
->>>>>>> 4f8a40f9326c2edbf2b22ab7a4b9085aebae5066
     trim: true,
     lowercase: true
   },
   lastname: {
     type: String,
-<<<<<<< HEAD
     alias: 'surname',
-=======
-    alias:'surname', //Family Name
->>>>>>> 4f8a40f9326c2edbf2b22ab7a4b9085aebae5066
     required: true,
     trim: true,
     lowercase: true
@@ -26,7 +17,6 @@ const EmployeeSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-<<<<<<< HEAD
     //index: true, //Optional if unique is defined
     unique: [true, "Duplicate Email Not allowed"],
     trim: true,
@@ -37,65 +27,35 @@ const EmployeeSchema = new mongoose.Schema({
     validate: function(value) {
       var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
       return emailRegex.test(value);
-=======
-    trim: true,
-    uppercase: true,
-    minlength: 5,
-    maxlength: 50,
-    //Custom Validator for Email
-    validate: function(value){
-      var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-      return emailRegex.test(value)
->>>>>>> 4f8a40f9326c2edbf2b22ab7a4b9085aebae5066
     }
   },
   gender: {
     type: String,
     required: true,
-<<<<<<< HEAD
     enum: ['male', 'female', 'other'],
     trim: true,
     lowercase: true
-=======
-    enum: ['male','female','other']
->>>>>>> 4f8a40f9326c2edbf2b22ab7a4b9085aebae5066
   },
   city:{
     type: String,
     required: true,
-<<<<<<< HEAD
     trim: true,
     lowercase: true
-=======
-    trim: true
->>>>>>> 4f8a40f9326c2edbf2b22ab7a4b9085aebae5066
   },
   designation: {
     type: String,
     required: true,
-<<<<<<< HEAD
     trim: true,
     lowercase: true
-=======
-    trim: true
->>>>>>> 4f8a40f9326c2edbf2b22ab7a4b9085aebae5066
   },
   salary: {
     type: Number,
     default: 0.0,
-<<<<<<< HEAD
     //min: [1000, 'Too less Salary'],
     //max: 12000,
     validate(value) {
       if (value < 0.0){
          throw new Error("Negative Salary aren't real.");
-=======
-    //min: [1000, 'Too less salary'],
-    //max: 25000
-    validate: function(value){
-      if(value < 0){
-        throw new Error("Negative Salary not allowed")
->>>>>>> 4f8a40f9326c2edbf2b22ab7a4b9085aebae5066
       }
     }
   },
@@ -184,6 +144,5 @@ EmployeeSchema.post('remove', (doc) => {
   console.log('%s has been removed', doc._id);
 });
 
-//Create Model
 const Employee = mongoose.model("Employee", EmployeeSchema);
 module.exports = Employee;
